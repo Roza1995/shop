@@ -1,6 +1,11 @@
 
-<section>
-    <app-product-row></app-product-row>
-    <app-product-row></app-product-row>
-    <app-product-row ></app-product-row>
+<section class = "mt-5">
+    <div *ngFor = "let item of products"
+    [class.active] = "isSelected(item)"
+        style = "width: 550px"
+        class = "mr-auto ml-auto"
+    >
+    
+    <app-product-row [product] = "item" (selectedProduct) = "getSelected($event)"></app-product-row>
+    </div>
 </section>
