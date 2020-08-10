@@ -1,4 +1,4 @@
-import { Component, Input, Output,  OnInit, EventEmitter } from '@angular/core';
+import { Component, Input, Output,  OnInit, EventEmitter, ViewChild,  ElementRef, AfterViewInit} from '@angular/core';
 import { Product } from './../../../core/models/product';
 
 @Component({
@@ -6,7 +6,10 @@ import { Product } from './../../../core/models/product';
   templateUrl: './product-row.component.html',
   styleUrls: ['./product-row.component.scss']
 })
-export class ProductRowComponent implements OnInit{
+export class ProductRowComponent implements OnInit, AfterViewInit{
+  @ViewChild("childText",{static: false})
+  public childText: ElementRef;
+
   @Input() public product : Product;
   @Output() selectedProduct = new EventEmitter<any>();
   
@@ -14,12 +17,17 @@ export class ProductRowComponent implements OnInit{
     }
 
    ngOnInit() : void {
+     
+   }
 
+   ngAfterViewInit(): void {
+     console.log(this.childText);
    }
 
    public getInfo() : void{
     this.selectedProduct.emit(this.product); 
   }
+
 
  
 

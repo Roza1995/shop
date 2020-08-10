@@ -1,11 +1,32 @@
 
 <section class = "mt-5">
+    <form>
+        <input
+            placeholder = "Search"
+            [ngModel] = "searchText"
+            (ngModelChange) = "searchProducts($event)"
+            [ngModelOptions] = "{standalone: true}"
+        >
+    </form>
+    
+    <!--<input type = "search" placeholder = "Search" #searchText (input) = "searchProducts(searchText.value)">
+    <input type = "submit" class = "btn btn-success" value = "Search" (click)= "searchProducts(searchText.value)">-->
+    <select (change) =  "sortProducts($event.target.value)">
+        <option *ngFor="let i of product">{{i}}</option>
+    </select> 
+
+    <select  [ngModel] = "product" (ngModelChange) =  "sortProducts($event)">
+        <option [value]="i" *ngFor="let i of product">{{i}}</option>
+    </select> 
+    
+     
     <div *ngFor = "let item of products"
     [class.active] = "isSelected(item)"
         style = "width: 550px"
         class = "mr-auto ml-auto"
     >
-    
-    <app-product-row [product] = "item" (selectedProduct) = "getSelected($event)"></app-product-row>
+    <app-product-row [product] = "item" (selectedProduct) = "getSelected($event)">
+        <h1 #contectChild>ContentChild</h1>     
+    </app-product-row>
     </div>
 </section>
