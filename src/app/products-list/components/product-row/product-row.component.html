@@ -6,10 +6,12 @@
       <div class="col-md-6">
         <div class="card-body">
           <div class = "d-flex justify-content-md-end"><h4>{{product.price}} $</h4></div>
+          <h2 #childText>ViewChild</h2>
           <h5 class="card-title">{{product.title}}</h5>
           <p class="card-text">{{product.description}}</p>
           <p class="card-text"><small class="text-muted" ><a (click) = getInfo()> View details</a></small></p>
         </div>
+        <ng-content></ng-content>
         
       </div>
     </div>
