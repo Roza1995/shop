@@ -10,23 +10,40 @@
     </form>
     
     <!--<input type = "search" placeholder = "Search" #searchText (input) = "searchProducts(searchText.value)">
-    <input type = "submit" class = "btn btn-success" value = "Search" (click)= "searchProducts(searchText.value)">-->
+    <input type = "submit" class = "btn btn-success" value = "Search" (click)= "searchProducts(searchText.value)">
     <select (change) =  "sortProducts($event.target.value)">
         <option *ngFor="let i of product">{{i}}</option>
-    </select> 
-
-    <select  [ngModel] = "product" (ngModelChange) =  "sortProducts($event)">
+    </select>-->
+    
+    <select [ngModel] = "product" (ngModelChange) =  "sortProducts($event)">
         <option [value]="i" *ngFor="let i of product">{{i}}</option>
     </select> 
-    
-     
-    <div *ngFor = "let item of products"
-    [class.active] = "isSelected(item)"
-        style = "width: 550px"
-        class = "mr-auto ml-auto"
-    >
-    <app-product-row [product] = "item" (selectedProduct) = "getSelected($event)">
-        <h1 #contectChild>ContentChild</h1>     
-    </app-product-row>
+   
+    <div
+        *ngIf = "isLoading; else productslist">
+        <app-loader></app-loader>
     </div>
+
+    <ng-template #productslist>
+        <h1 *ngIf = "products.length === 0">No Results</h1>
+        <div *ngFor = "let item of products"
+            [class.active] = "isSelected(item)"
+            style = "width: 550px"
+            class = "mr-auto ml-auto"
+            appBorderedBox
+            appShowForm
+        >
+
+        <form class = "form-group" [style.display]="'none'"  #f="ngForm" (ngSubmit)="onSubmit(f)">
+            <input type = "text" name="title" ngModel required #title="ngModel">
+            <input type = "number" appBlockCopyPaste name="price" ngModel required #price="ngModel"> 
+            <textarea name="description" ngModel required #description="ngModel"></textarea>
+            <input class="btn btn-primary" type="submit" value = "Save">
+        </form>
+
+        <app-product-row [product] = "item" (selectedProduct) = "getSelected($event)">
+            <h1 #contectChild>ContentChild</h1>     
+        </app-product-row>
+        </div>
+    </ng-template>
 </section>
