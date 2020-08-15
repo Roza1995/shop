@@ -8,6 +8,7 @@ import { BlockCopyPasteDirective } from './directives/block-copy-paste.directive
 
 
 
+
 @NgModule({
   declarations: [
     LoaderComponent,
@@ -22,6 +23,8 @@ import { BlockCopyPasteDirective } from './directives/block-copy-paste.directive
     LoaderComponent,
     BorderedBoxDirective,
     ShowFormDirective,
-   ]
+    BlockCopyPasteDirective,
+   ],
+  
 })
 export class SharedModule { }
