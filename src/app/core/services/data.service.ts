@@ -12,7 +12,7 @@ export class DataService {
     return this.http.get('./assets/json/data.json');
   }
 
-  /* public getTodos(): Observable<any> {
+  public getTodos(): Observable<any> {
     return this.http.get('https://jsonplaceholder.typecode.com/todos/todos');
-  } */
+  } 
 }

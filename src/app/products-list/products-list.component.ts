@@ -34,12 +34,12 @@ export class ProductsListComponent implements OnInit {
   ngOnInit(): void {
     setTimeout(this._getProducts.bind(this),1000);
 
-   /*  this.dataservice.getTodos()
+    this.dataservice.getTodos()
     .subscribe((res)=> {
       console.log(res);
     }, (err)=>{
       console.log(err);
-    }) */
+    }) 
   }
 
   private _getProducts(): void{
