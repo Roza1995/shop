@@ -26,7 +26,7 @@
 
     <ng-template #productslist>
         <h1 *ngIf = "products.length === 0">No Results</h1>
-        <div *ngFor = "let item of products"
+        <div *ngFor = "let item of products "
             [class.active] = "isSelected(item)"
             style = "width: 550px"
             class = "mr-auto ml-auto"
