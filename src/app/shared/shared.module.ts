@@ -14,10 +14,10 @@ import { BlockCopyPasteDirective } from './directives/block-copy-paste.directive
     LoaderComponent,
     BorderedBoxDirective,
     ShowFormDirective,
-    BlockCopyPasteDirective,
+    BlockCopyPasteDirective
    ],
   imports: [
-    CommonModule
+    CommonModule,
   ],
   exports: [
     LoaderComponent,
