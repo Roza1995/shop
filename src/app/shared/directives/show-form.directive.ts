@@ -11,5 +11,5 @@ export class ShowFormDirective {
 
   @HostListener('click') public onClick(){
     this.renderer2.setStyle(this.elementRef.nativeElement.querySelector('.form-group'),'display','block')
-  }
+  } 
 }

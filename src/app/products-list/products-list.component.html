@@ -26,7 +26,7 @@
 
     <ng-template #productslist>
         <h1 *ngIf = "products.length === 0">No Results</h1>
-        <div *ngFor = "let item of products "
+        <div *ngFor = "let item of products;let i = index "
             [class.active] = "isSelected(item)"
             style = "width: 550px"
             class = "mr-auto ml-auto"
@@ -34,14 +34,21 @@
             appShowForm
         >
 
-        <form class = "form-group" [style.display]="'none'"  #f="ngForm" (ngSubmit)="onSubmit(f)">
-            <input type = "text" name="title" ngModel required #title="ngModel">
-            <input type = "number" appBlockCopyPaste name="price" ngModel required #price="ngModel"> 
-            <textarea name="description" ngModel required #description="ngModel"></textarea>
-            <input class="btn btn-primary" type="submit" value = "Save">
+        <form class = "form-group" [style.display] = "'none'"  [formGroup] = "edit" (ngSubmit)="onSubmit(i)">
+            <input class = "form-control" type = "text" name="title" formControlName = "title">
+                <div class="alert alert-danger" [hidden] = "edit.controls['title'].untouched || !edit.controls['title'].errors?.required">This field is required</div>
+                <div class="alert alert-danger" [hidden] = "!edit.get('title').hasError('pattern')">Non valid title</div>
+            
+            <input class = "form-control" type = "text"  name="price"  formControlName = "price" appBlockCopyPaste>
+                <div class="alert alert-danger" [hidden] = "edit.controls['price'].untouched || !edit.controls['price'].errors?.required">This field is required</div>
+                <div class="alert alert-danger" [hidden] = "!edit.get('price').hasError('pattern')">Non valid price</div>
+            <textarea class = "form-control" name="description" formControlName = "description"></textarea>
+                <div class="alert alert-danger" [hidden] = "edit.controls['description'].untouched || !edit.controls['description'].errors?.required">This field is required</div>
+                <div class="alert alert-danger" [hidden] = "!edit.get('description').hasError('maxlength')">Must be less than 250 symbol</div>
+            <input class="btn btn-primary form-control" type="submit" value = "Save" [disabled] = "edit.invalid">
         </form>
 
-        <app-product-row [product] = "item" (selectedProduct) = "getSelected($event)">
+        <app-product-row  [product] = "item" (selectedProduct) = "getSelected($event)">
             <h1 #contectChild>ContentChild</h1>     
         </app-product-row>
         </div>

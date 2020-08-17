@@ -1,7 +1,7 @@
 import { Product } from './../core/models/product';
 import { Component, OnInit, ContentChild, ElementRef} from '@angular/core';
-import { NgForm} from '@angular/forms';
 import { DataService } from './../core/services/data.service';
+import { FormGroup, FormBuilder, FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-products-list',
@@ -22,14 +22,26 @@ export class ProductsListComponent implements OnInit {
   public product: string[] = ['price','price-reverse','alphabetical','alphabetical-reverse'];
   public isLoading: boolean = true;
   public modifiedText:string;
+  public edit: FormGroup;
+  public show: boolean = false;
+  public selectedIndex: number;
+ 
 
 
 
   
 
-  constructor(private dataservice: DataService) {
-    
-   }
+  constructor(private dataservice: DataService,
+              private formBuilder: FormBuilder){
+
+    this.edit = this.formBuilder.group({
+      title: new FormControl('',[Validators.required, Validators.pattern('[a-zA-Z]+')]),
+      price: new FormControl('', [Validators.required, Validators.pattern('[0-9]+')]),
+      description: new FormControl('',[Validators.required, Validators.maxLength(255)])
+                  
+    });
+  }
+      
 
   ngOnInit(): void {
     setTimeout(this._getProducts.bind(this),1000);
@@ -113,19 +125,16 @@ export class ProductsListComponent implements OnInit {
   }
 
   
-  public changeName(value: string): void{
-
-    console.log(value);
-  }
-
-  onSubmit(f: NgForm) {
-    //this.isLoading = true;
-    //setTimeout(()=>{
-      this.products[0] = f.value
-      console.log(f.value); 
-      console.log(f.valid); 
+  public onSubmit(index:number): void{
+    this.isLoading = true;
+    setTimeout(()=>{
+      this.products[index] = this.edit.getRawValue();
       this.isLoading = false;
-    //},1000)
-     
+    },1000) 
   }
+
+  /* public onClick(): void{  
+      this.show = true;
+  } */
+
 }
