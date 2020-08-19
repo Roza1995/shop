@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {Routes, RouterModule} from '@angular/router';
 
 
 
@@ -11,7 +12,23 @@ import { HeaderComponent } from './header/header.component';
 import { ProductsListComponent } from './products-list/products-list.component';
 import { ProductRowComponent } from './products-list/components/product-row/product-row.component';
 import { FooterComponent } from './footer/footer.component';
+import { HomeComponent } from './pages/home/home.component';
+import { AboutComponent } from './pages/about/about.component';
+import { ContactComponent } from './pages/contact/contact.component';
+import { LogInComponent } from './pages/log-in/log-in.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { PasswordComponent } from './pages/password/password.component';
 
+
+const appRoutes: Routes = [
+  { path: '', redirectTo:'home', pathMatch:'full'},
+  { path: 'home', component: HomeComponent},
+  { path: 'about', component: AboutComponent},
+  { path: 'contact', component: ContactComponent},
+  { path: 'login', component: LogInComponent},
+  { path: 'password', component: PasswordComponent},
+  { path: '**', component: NotFoundComponent},
+];
 
 
 
@@ -21,14 +38,21 @@ import { FooterComponent } from './footer/footer.component';
     HeaderComponent,
     ProductsListComponent,
     ProductRowComponent,
-    FooterComponent
+    FooterComponent,
+    HomeComponent,
+    AboutComponent,
+    ContactComponent,
+    LogInComponent,
+    NotFoundComponent,
+    PasswordComponent
   ],
   imports: [
     BrowserModule,
     SharedModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule.forRoot(appRoutes),
 
   ],
   providers: [],
