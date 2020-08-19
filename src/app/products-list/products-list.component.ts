@@ -22,19 +22,14 @@ export class ProductsListComponent implements OnInit {
   public product: string[] = ['price','price-reverse','alphabetical','alphabetical-reverse'];
   public isLoading: boolean = true;
   public modifiedText:string;
-  public edit: FormGroup;
+  public editFormGroup: FormGroup;
   public show: boolean = false;
-  public selectedIndex: number;
- 
-
-
-
   
 
   constructor(private dataservice: DataService,
               private formBuilder: FormBuilder){
 
-    this.edit = this.formBuilder.group({
+    this.editFormGroup = this.formBuilder.group({
       title: new FormControl('',[Validators.required, Validators.pattern('[a-zA-Z]+')]),
       price: new FormControl('', [Validators.required, Validators.pattern('[0-9]+')]),
       description: new FormControl('',[Validators.required, Validators.maxLength(255)])
@@ -128,7 +123,7 @@ export class ProductsListComponent implements OnInit {
   public onSubmit(index:number): void{
     this.isLoading = true;
     setTimeout(()=>{
-      this.products[index] = this.edit.getRawValue();
+      this.products[index] = this.editFormGroup.getRawValue();
       this.isLoading = false;
     },1000) 
   }
