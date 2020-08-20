@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators} from '@angular/forms';
-import {  Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-log-in',
@@ -25,7 +25,7 @@ export class LogInComponent implements OnInit {
   }
 
   public getNewPassword(): void{
-    this.router.navigate(['password']);
+    this.router.navigate(['forgot-password']);
   }
 
 }

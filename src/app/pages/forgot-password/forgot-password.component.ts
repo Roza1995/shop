@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators} from '@angular/forms';
-import {  Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-password',
-  templateUrl: './password.component.html',
-  styleUrls: ['./password.component.scss']
+  selector: 'app-forgot-password',
+  templateUrl: './forgot-password.component.html',
+  styleUrls: ['./forgot-password.component.scss']
 })
-export class PasswordComponent implements OnInit {
+export class ForgotPasswordComponent implements OnInit {
   public newPassword: FormGroup;
   
   constructor(private router: Router, private formBuilder: FormBuilder) { 
@@ -41,6 +41,5 @@ export class PasswordComponent implements OnInit {
   public saveNewPassword(): void {
     this.router.navigate(['login']);
   }
-
 
 }

@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {Routes, RouterModule} from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 
 
 
@@ -17,7 +17,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { LogInComponent } from './pages/log-in/log-in.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { PasswordComponent } from './pages/password/password.component';
+import { ForgotPasswordComponent  } from './pages/forgot-password/forgot-password.component';
 
 
 const appRoutes: Routes = [
@@ -26,7 +26,7 @@ const appRoutes: Routes = [
   { path: 'about', component: AboutComponent},
   { path: 'contact', component: ContactComponent},
   { path: 'login', component: LogInComponent},
-  { path: 'password', component: PasswordComponent},
+  { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: '**', component: NotFoundComponent},
 ];
 
@@ -44,7 +44,7 @@ const appRoutes: Routes = [
     ContactComponent,
     LogInComponent,
     NotFoundComponent,
-    PasswordComponent
+    ForgotPasswordComponent 
   ],
   imports: [
     BrowserModule,
