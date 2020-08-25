@@ -18,7 +18,18 @@
     <select [ngModel] = "product" (ngModelChange) =  "sortProducts($event)">
         <option [value]="i" *ngFor="let i of product">{{i}}</option>
     </select> 
-   
+
+    <div class="dropdown">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Filter by Category
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <a class="dropdown-item"  (click) = "filterBYCategory('shoes')" [routerLink]="['/product', 1]" [queryParams]="{ category: 'shoes' }">Shoes</a>
+          <a class="dropdown-item" (click) = "filterBYCategory('tshirt')" [routerLink]="['/product', 2]" [queryParams]="{ category: 'tshirt' }">T-shirts</a>
+        </div>
+      </div>
+
+    
     <div
         *ngIf = "isLoading; else productslist">
         <app-loader></app-loader>
