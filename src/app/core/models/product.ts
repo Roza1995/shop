@@ -3,6 +3,7 @@ export class Product {
     public imgUrl: string;
     public title:string;
     public price: number;
+    public category: string;
     public description: string;
       
 
@@ -10,6 +11,7 @@ export class Product {
         imgUrl: string,
         title:string,
         price: number,
+        category: string,
         description: string,
         
         ){
@@ -17,6 +19,7 @@ export class Product {
             this.imgUrl = imgUrl;
             this.title = title;
             this.price = price;
+            this.category = category;
             this.description = description;
     }
 }

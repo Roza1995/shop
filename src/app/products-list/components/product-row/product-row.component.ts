@@ -1,5 +1,7 @@
 import { Component, Input, Output,  OnInit, EventEmitter, ViewChild,  ElementRef, AfterViewInit} from '@angular/core';
 import { Product } from './../../../core/models/product';
+import { Router, ActivatedRoute} from '@angular/router';
+
 
 @Component({
   selector: 'app-product-row',
@@ -10,11 +12,12 @@ export class ProductRowComponent implements OnInit, AfterViewInit{
   @ViewChild("childText",{static: false})
   public childText: ElementRef;
 
-  @Input() public product : Product;
+  @Input() 
+  public product : Product;
+  
   @Output() selectedProduct = new EventEmitter<any>();
   
-  constructor() {
-    }
+  constructor() {}
 
    ngOnInit() : void {
      
@@ -26,6 +29,7 @@ export class ProductRowComponent implements OnInit, AfterViewInit{
 
    public getInfo() : void{
     this.selectedProduct.emit(this.product); 
+    
   }
 
 

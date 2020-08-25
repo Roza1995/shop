@@ -1,7 +1,11 @@
+import { DataService } from './../core/services/data.service';
 import { Product } from './../core/models/product';
 import { Component, OnInit, ContentChild, ElementRef} from '@angular/core';
-import { DataService } from './../core/services/data.service';
 import { FormGroup, FormBuilder, FormControl, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import { ActivatedRoute} from '@angular/router';
+
+
 
 @Component({
   selector: 'app-products-list',
@@ -13,10 +17,10 @@ export class ProductsListComponent implements OnInit {
 
   @ContentChild("contentChild", {static:false})
   public contentChild: ElementRef;
-  public products : Product[] = [];
+  public products: Product[] = [];
   public selectedProduct: Product;
   public searchText: string;
-  public cachedProducts: Product[]= [];
+  public cachedProducts: Product[] = [];
   public price: number;
   public title: string;
   public product: string[] = ['price','price-reverse','alphabetical','alphabetical-reverse'];
@@ -24,10 +28,15 @@ export class ProductsListComponent implements OnInit {
   public modifiedText:string;
   public editFormGroup: FormGroup;
   public show: boolean = false;
+  public id: string;
+  public category: string;
+  
+
   
 
   constructor(private dataservice: DataService,
-              private formBuilder: FormBuilder){
+              private formBuilder: FormBuilder,
+              private route: ActivatedRoute){
 
     this.editFormGroup = this.formBuilder.group({
       title: new FormControl('',[Validators.required, Validators.pattern('[a-zA-Z]+')]),
@@ -35,22 +44,30 @@ export class ProductsListComponent implements OnInit {
       description: new FormControl('',[Validators.required, Validators.maxLength(255)])
                   
     });
+
   }
       
 
   ngOnInit(): void {
     setTimeout(this._getProducts.bind(this),1000);
-
-    this.dataservice.getTodos()
+  
+    /* this.dataservice.getTodos()
     .subscribe((res)=> {
       console.log(res);
     }, (err)=>{
       console.log(err);
-    }) 
+    })  */
+
+    
   }
 
   private _getProducts(): void{
-    this.dataservice.getProductsFromDB().subscribe(data => this.products = data["products"]);
+    this.dataservice.getProductsFromDB()
+      .subscribe(data => {
+        this.products = data["products"]
+        this.cachedProducts = this.products;
+  });
+    
     this.isLoading = !this.isLoading;
   }
 
@@ -107,6 +124,14 @@ export class ProductsListComponent implements OnInit {
     
   }
 
+  public filterBYCategory(categories: string){
+    this.products = this.cachedProducts.filter((product)=>{
+      return product.category.includes(categories);
+    })
+
+  }
+
+  
   public sortByPrice(price1: Product, price2: Product): number{
     if(price1.price > price2.price)return 1
      else if(price1.price ===  price2.price) return 0
@@ -128,8 +153,6 @@ export class ProductsListComponent implements OnInit {
     },1000) 
   }
 
-  /* public onClick(): void{  
-      this.show = true;
-  } */
+  
 
 }
