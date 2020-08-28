@@ -10,7 +10,9 @@ import { ProductsListComponent } from './../../products-list/products-list.compo
 import { ProductRowComponent } from './../../products-list/components/product-row/product-row.component';
 import { HomeComponent } from './../../pages/home/home.component';
 
-
+const homeRoutes: Routes = [
+  { path: '', component: HomeComponent},
+]
 
 @NgModule({
   declarations: [
@@ -21,12 +23,13 @@ import { HomeComponent } from './../../pages/home/home.component';
   imports: [
     CommonModule,
     SharedModule,
-    RouterModule,
+    RouterModule.forChild(homeRoutes),
     FormsModule,
     ReactiveFormsModule,
   ],
   exports:[
     HomeComponent,
+    RouterModule
   ]
 })
 export class HomeModule { }

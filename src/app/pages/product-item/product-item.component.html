@@ -13,6 +13,10 @@
         </div>
       </div>
     </div>
-  </div>
+  </div>.
+  <a [routerLink] = "'/product/' + product?.id + '/info'"  class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Info</a>
+  <a [routerLink] = "'/product/' + product?.id + '/review'" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Review</a>
+  <a [routerLink] = "'/product/' + product?.id + '/shops'" class="btn btn-success btn-lg active" role="button" aria-pressed="true">Shops</a>
+  <router-outlet></router-outlet>
 </section>
 
