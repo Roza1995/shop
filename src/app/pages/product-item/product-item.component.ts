@@ -12,7 +12,7 @@ export class ProductItemComponent implements OnInit {
   public product: Product;
 
   constructor(private activateRoute: ActivatedRoute,
-    private _dataService: DataService) { }
+    private _dataService: DataService ) { }
 
   ngOnInit(): void {
 

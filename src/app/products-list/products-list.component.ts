@@ -36,7 +36,8 @@ export class ProductsListComponent implements OnInit {
 
   constructor(private dataservice: DataService,
               private formBuilder: FormBuilder,
-              private route: ActivatedRoute){
+              private route: ActivatedRoute,
+              private router: Router){
 
     this.editFormGroup = this.formBuilder.group({
       title: new FormControl('',[Validators.required, Validators.pattern('[a-zA-Z]+')]),
