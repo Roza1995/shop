@@ -35,11 +35,21 @@ const appRoutes: Routes = [
       loadChildren: () => import('./pages/log-in/log-in.module').then(m => m.LogInModule)
     },
     { path: 'product/:id', component: ProductItemComponent,
-    children: [
-      { path: 'info', component: InfoComponent},
-      { path: 'review', component: ReviewComponent},
-      { path: 'shops', component: ShopsComponent},
-    ]
+      children: [
+        { 
+          path: 'info', 
+          loadChildren: () => import('./pages/product-item/components/info/info.module').then(m => m.InfoModule)
+        },
+        { 
+          path: 'review', 
+          loadChildren: () => import('./pages/product-item/components/review/review.module').then(m => m.ReviewModule)
+        },
+        { 
+          path: 'shops', 
+          loadChildren: () => import('./pages/product-item/components/shops/shops.module').then(m => m.ShopsModule)
+        },
+        
+      ]
 
     },
     {  

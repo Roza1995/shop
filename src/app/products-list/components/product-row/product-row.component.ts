@@ -3,6 +3,8 @@ import { Product } from './../../../core/models/product';
 import { Router, ActivatedRoute} from '@angular/router';
 
 
+
+
 @Component({
   selector: 'app-product-row',
   templateUrl: './product-row.component.html',
@@ -29,10 +31,11 @@ export class ProductRowComponent implements OnInit, AfterViewInit{
 
    public getInfo() : void{
     this.selectedProduct.emit(this.product); 
-    
   }
+    
+}
 
 
  
 
-}
+
